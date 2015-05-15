@@ -1,3 +1,4 @@
 # POJOTools
 java POJO类生产工具
-wws
+
+通过json生效相应的POJO类
