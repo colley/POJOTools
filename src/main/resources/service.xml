@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE service-builder SYSTEM "pojo-builder.dtd" >
+<service-builder package-path="com.test.common.collections">
+<author>mayc@asiainfo-linkage.com</author>
+	<entity name="InputObject" package-path="" superclass="BaseModule">
+		<property name="params" type="Params" entity="Params" />
+	</entity>
+	
+	<entity name="Params" superclass="BaseModule" implClazz="" desc="入参描述">
+		<property name="compTypId"  	type="Long" desc="营销案Id"/>
+		<property name="name"  			type="String"  desc="营销案Id"/>
+		<property name="description"  	type="String"  desc="营销案Id"/>
+		<property name="minComponents"  type="Integer"  desc="营销案Id"/>
+		<property name="maxComponents"  type="Integer" desc="营销案Id"/>
+		<property name="order"  		type="Long"  desc="营销案Id"/>
+		<property name="newWindow"  	type="Integer" desc="营销案Id"/>
+		<property name="params" type="List" entity="String" desc="营销案Id"/>
+	</entity>
+	
+	<entity name="BaseModule">
+	</entity>
+	
+</service-builder>

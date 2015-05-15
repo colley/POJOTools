@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+This is the DTD for the Service Builder parameters.
+
+<!DOCTYPE service-builder SYSTEM "tools/service-builder-SNAPSHOT.dtd">
+-->
+
+<!--
+The service-builder element is the root of the deployment descriptor for
+a Service Builder descriptor that is used to generate services available to
+portlets. The Service Builder saves the developer time by generating Spring
+utilities, SOAP utilities, and Hibernate DAO classes to ease the
+development of services.
+-->
+<!ELEMENT service-builder (author?, imports?, entity*, exceptions?, service-classes?)>
+
+<!--
+The package-path value specifies the package of the generated code.
+-->
+<!ATTLIST service-builder
+	package-path CDATA #REQUIRED
+>
+
+<!--
+The author element is the name of the user associated with the generated code.
+-->
+<!ELEMENT author (#PCDATA)>
+
+<!--
+The namespace element must be a unique namespace for this component. Table names
+will be prepended with this namespace. Generated JSON JavaScript will be scoped
+to this namespace as well (i.e., Liferay.Service.Test.* if the namespace is
+Test).
+-->
+<!ELEMENT namespace (#PCDATA)>
+
+<!--
+An entity usually represents a business facade and a table in the database. If
+an entity does not have any columns, then it only represents a business facade.
+The Service Builder will always generate an empty business facade POJO if it
+does not exist. Upon subsequent generations, the Service Builder will check to
+see if the business facade already exists. If it exists and has additional
+methods, then the Service Builder will also update the SOAP wrappers.
+
+If an entity does have columns, then the value object, the POJO class that
+is mapped to the database, and other DAO utilities are also generated
+based on the order and finder elements.
+-->
+<!ELEMENT entity (property*)>
+
+<!--
+The name value specifies the name of the entity.
+
+If the uuid value is true, then the service will generate a UUID column for the
+service. This column will automatically be populated with a UUID. Developers
+will also be able to find and remove based on that UUID. The default value is
+false.
+
+
+-->
+<!ATTLIST entity
+	name CDATA #REQUIRED
+	package-path CDATA #IMPLIED
+	superclass CDATA #IMPLIED
+	implClazz  CDATA #IMPLIED
+	desc  CDATA #IMPLIED
+>
+
+<!--
+The column element represents a column in the database.
+-->
+<!ELEMENT property (#PCDATA)>
+
+
+<!ATTLIST property
+	name CDATA #REQUIRED
+	type CDATA #REQUIRED
+	entity CDATA #IMPLIED
+	not-null CDATA #IMPLIED
+	default-value CDATA #IMPLIED
+	order CDATA #IMPLIED
+	desc CDATA #IMPLIED
+>
+
+<!--
+The exceptions element contain a list of generated exceptions. This doesn't save
+a lot of typing, but can still be helpful.
+-->
+<!ELEMENT exceptions (exception*)>
+
+<!--
+See the comments in exceptions element.
+-->
+<!ELEMENT exception (#PCDATA)>
+
+
+<!--
+The imports element contain a list of server.xml containing definitions required for Hibernate mappings.
+-->
+<!ELEMENT imports (import*)>
+
+<!--
+See the comments in imports element.
+-->
+<!ELEMENT import (#PCDATA)>
